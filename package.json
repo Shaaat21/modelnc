@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/prepare-pages.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"

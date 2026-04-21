@@ -15,29 +15,34 @@ const legacyProductRoutes = catalogProducts.map((product) => ({
   element: <ProductPage product={product} />,
 }))
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-  },
-  {
-    path: 'maindisplay',
-    element: <MainDisplay />,
-  },
-  {
-    path: 'products/:slug',
-    element: <ProductRoute />,
-  },
-  {
-    path: 'checkout/success',
-    element: <CheckoutSuccess />,
-  },
-  {
-    path: 'checkout/cancel',
-    element: <CheckoutCancel />,
-  },
-  ...legacyProductRoutes,
-])
+const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '')
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <App />,
+    },
+    {
+      path: 'maindisplay',
+      element: <MainDisplay />,
+    },
+    {
+      path: 'products/:slug',
+      element: <ProductRoute />,
+    },
+    {
+      path: 'checkout/success',
+      element: <CheckoutSuccess />,
+    },
+    {
+      path: 'checkout/cancel',
+      element: <CheckoutCancel />,
+    },
+    ...legacyProductRoutes,
+  ],
+  { basename },
+)
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
